@@ -1,14 +1,14 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {addToCart, removeFromCart, clearCart} from "../features/cartSlice"
+import {addToCart, removeFromCart} from "../features/cartSlice"
 
 
 function Cards({products}) {
 
-    const dispatch = useDispatch()
-    const cartItem = useSelector((state)=>state.cart.items.find((item)=>item.id===products.id))
+const dispatch = useDispatch()
+const cartItem = useSelector((state)=>state.cart.items.find((item)=>item.id===products.id))
 
-    const quantity = cartItem ? cartItem.quantity:0;
+const quantity = cartItem ? cartItem.quantity:0;
   return (
     <div className="h-full flex flex-col p-4 max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
         <div className='max-w-100 mb-3 h-[150px] flex justify-center items-center'>
@@ -24,7 +24,7 @@ function Cards({products}) {
                 {products.description}
             </p>
             <div className="mt-auto flex justify-between items-center">
-                <p className=''>{products.price}</p>
+                <p className=''>${products.price}</p>
                 {quantity === 0 ? (
                     <button onClick={()=>dispatch(addToCart(products))} className='outline-1 outline-[#c92d2d] rounded px-3 text-[13px] bg-red-50 text-[#c92d2d]'>
                         add
