@@ -58,7 +58,7 @@ function AddAddress() {
                     placeholder='Building & block'
                 />
             </div>
-            <div className='w-full absoulte bottom-0 bg-[#c92d2d] text-white text-center p-3 rounded-[10px] text-[14px] hover:bg-[#9d2323] transition-all'>
+            <div className='w-full absolute bottom-0 bg-[#c92d2d] text-white text-center p-3 rounded-[10px] text-[14px] hover:bg-[#9d2323] transition-all'>
                 <button type='submit'>Continue</button>
             </div>
         </form>

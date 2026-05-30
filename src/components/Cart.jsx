@@ -50,8 +50,8 @@ function Cart() {
             {cartListing ? 
               <div>
                 <div className="flex justify-between py-3 px-4 bg-white border-b border-gray-200">
-                  <p className="text-[14px] font-semibold">My Cart</p>
-                  <button onClick={hideSideBar}>x</button>
+                  <p className="text-[14px] font-semibold">My Cart ({totalQuantity})</p>
+                  <button onClick={hideSideBar} className="text-gray-400 hover:text-gray-700 text-lg leading-none">&times;</button>
                 </div>
 
                 <div className="p-3 relative">
@@ -70,7 +70,7 @@ function Cart() {
                         </div>
                         <div className="flex gap-2 items-center bg-[#c92d2d] rounded text-white py-[1px] px-2">
                           <button onClick={() => dispatch(removeFromCart(e.id))}>-</button>
-                          <p className="text-[13px]"></p>
+                          <p className="text-[13px]">{e.quantity}</p>
                           <button onClick={() => dispatch(addToCart(e))}>+</button>
                         </div>
                       </li>
@@ -97,7 +97,7 @@ function Cart() {
                     </table>
                   </div>
 
-                  <div className='w-full absoulte bottom-0 bg-[#c92d2d] text-white text-center p-3 rounded-[10px] text-[14px] hover:bg-[#9d2323] transition-all'>
+                  <div className='w-full absolute bottom-0 bg-[#c92d2d] text-white text-center p-3 rounded-[10px] text-[14px] hover:bg-[#9d2323] transition-all'>
                     <button onClick={handleClickPay}>Click to Pay ${grandTotal}</button>
                   </div>
                 </div>

@@ -3,6 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
 const storedCurrentUsers = localStorage.getItem("currentUser") || null;
 
+if (storedUsers.length === 0) {
+    storedUsers.push({ email: "demo@reactmart.com", password: "demo123" });
+    localStorage.setItem("users", JSON.stringify(storedUsers));
+}
+
 const initialState={
     users: storedUsers,
     currentUser: storedCurrentUsers,
@@ -19,7 +24,7 @@ const authSlice = createSlice({
 
             const exists = state.users.find((u)=>u.email===email);
             if(exists){
-                state.error="User already exist";
+                state.error="User already exists";
                 return;
             }
             state.users.push({email,password});
@@ -27,9 +32,9 @@ const authSlice = createSlice({
         },
 
         login:(state,action)=>{
-            const {email,passoword}=action.payload;
+            const {email,password}=action.payload;
             const user = state.users.find(
-                (u)=>u.email === email && u.passoword === passoword
+                (u)=>u.email === email && u.password === password
             )
             if(user){
                 state.currentUser= email;
@@ -37,7 +42,7 @@ const authSlice = createSlice({
                 state.error=null;
                 localStorage.setItem("currentUser",email);
             } else{
-                state.error="invalid email or password"
+                state.error="Invalid email or password"
             }
         },
 
