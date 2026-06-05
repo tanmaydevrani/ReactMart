@@ -39,9 +39,11 @@ const cartSlice = createSlice({
             }
         },
         clearCart:(state)=>{
-            state.items=[],
-            state.price=0,
-            state.quantity=0
+            state.items = []
+            state.totalQuantity = 0
+            state.totalPrice = 0
+            state.gst = 0
+            state.grandTotal = 0
         },
         finalBill:(state,action)=>{
             const {gst,grandTotal}=action.payload

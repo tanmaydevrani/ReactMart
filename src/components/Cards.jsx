@@ -2,14 +2,17 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addToCart, removeFromCart } from "../features/cartSlice"
 
-function Stars({ rate }) {
-  const full = Math.floor(rate)
-  const half = rate - full >= 0.5
+function StarRating({ rate }) {
+  const filled = Math.round(rate)
   return (
     <div className="flex items-center gap-1">
-      <span className="text-xs text-yellow-400">
-        {'★'.repeat(full)}{half ? '½' : ''}{'☆'.repeat(5 - full - (half ? 1 : 0))}
-      </span>
+      <div className="flex text-xs">
+        {[1, 2, 3, 4, 5].map((i) => (
+          <span key={i} className={i <= filled ? 'text-yellow-400' : 'text-gray-200'}>
+            ★
+          </span>
+        ))}
+      </div>
       <span className="text-[10px] text-gray-400">{rate}</span>
     </div>
   )
@@ -17,7 +20,9 @@ function Stars({ rate }) {
 
 function Cards({ products }) {
   const dispatch = useDispatch()
-  const cartItem = useSelector((state) => state.cart.items.find((item) => item.id === products.id))
+  const cartItem = useSelector((state) =>
+    state.cart.items.find((item) => item.id === products.id)
+  )
   const quantity = cartItem ? cartItem.quantity : 0
 
   return (
@@ -37,7 +42,7 @@ function Cards({ products }) {
 
         {products.rating && (
           <div className="mb-2">
-            <Stars rate={products.rating.rate} />
+            <StarRating rate={products.rating.rate} />
             <p className="text-[10px] text-gray-400">{products.rating.count} reviews</p>
           </div>
         )}
